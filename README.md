@@ -1,6 +1,23 @@
 # Kotlin-REST-API-Manage
 Manage REST API with okhttp3, retrofit2, gson and rxjava2
 
+Android has multiple ways to manage Manage REST API. Using some awesome libraries are making it more efficient and awesome. Read the full article and full app source code available on Github.
+
+# The topics we will learn are:
+ * Okhttp3
+ * Retrofit2
+ * RxJava
+ * RxAndroid
+ * Gson
+
+## Find full tutorial on medium :
+<br>
+<a href="https://medium.com/@imrankst1221/manage-rest-api-with-okhttp3-retrofit2-gson-and-rxjava2-aa5bea1e8a92">https://medium.com/@imrankst1221/</a>
+<br>
+<a href="https://medium.com/@imrankst1221/manage-rest-api-with-okhttp3-retrofit2-gson-and-rxjava2-aa5bea1e8a92" rel="nofollow" rel="nofollow">
+  <img alt="InfixSoft" src="https://user-images.githubusercontent.com/7795398/50554968-22148d00-0cef-11e9-912c-cfd54544353f.png" width="370" height="160" >
+</a>
+
 
 ## Contact with me
 <a href="http://www.infixsoft.com/" rel="nofollow">
