@@ -15,7 +15,7 @@ Android has multiple ways to manage Manage REST API. Using some awesome librarie
 <a href="https://medium.com/@imrankst1221/manage-rest-api-with-okhttp3-retrofit2-gson-and-rxjava2-aa5bea1e8a92">https://medium.com/@imrankst1221/</a>
 <br>
 <a href="https://medium.com/@imrankst1221/manage-rest-api-with-okhttp3-retrofit2-gson-and-rxjava2-aa5bea1e8a92" rel="nofollow" rel="nofollow">
-  <img alt="InfixSoft" src="https://user-images.githubusercontent.com/7795398/50554968-22148d00-0cef-11e9-912c-cfd54544353f.png" width="370" height="160" >
+  <img alt="InfixSoft" src="https://user-images.githubusercontent.com/7795398/50554968-22148d00-0cef-11e9-912c-cfd54544353f.png" width="390" height="160" >
 </a>
 
 
