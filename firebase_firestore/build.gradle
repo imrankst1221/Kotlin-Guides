@@ -7,14 +7,14 @@ android {
 
 
     defaultConfig {
-        applicationId "imrankst12221.firebase_firestore"
+        applicationId "imrankst1221.medium.demo"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -34,4 +34,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-database:16.0.5'
+    implementation 'com.google.firebase:firebase-firestore:17.1.5'
 }

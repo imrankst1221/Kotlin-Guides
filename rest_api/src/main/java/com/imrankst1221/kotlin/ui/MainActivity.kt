@@ -1,10 +1,13 @@
-package com.imrankst1221.kotlin.api
+package com.imrankst1221.kotlin.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.imrankst1221.kotlin.api.ApiService
+import com.imrankst1221.kotlin.Constants
+import com.imrankst1221.kotlin.api.R
+import com.imrankst1221.kotlin.UtilMethods
 import com.imrankst1221.kotlin.api.request.LoginPostData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

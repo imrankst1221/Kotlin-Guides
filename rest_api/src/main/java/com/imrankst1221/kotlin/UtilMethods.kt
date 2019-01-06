@@ -1,4 +1,4 @@
-package com.imrankst1221.kotlin.api
+package com.imrankst1221.kotlin
 import android.app.AlertDialog
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,6 +6,7 @@ import android.net.NetworkInfo
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import com.imrankst1221.kotlin.api.R
 
 /**
  * Created by imran on 27/Dec/2017.

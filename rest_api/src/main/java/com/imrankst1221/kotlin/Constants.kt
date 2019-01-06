@@ -1,4 +1,4 @@
-package com.imrankst1221.kotlin.api
+package com.imrankst1221.kotlin
 
 /**
  * Created by imran on 11/04/2018.
