@@ -12,11 +12,11 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.*
+import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_student_item.view.*
-import kotlinx.android.synthetic.main.popup_add_student.view.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
@@ -33,12 +33,14 @@ class MainActivity : AppCompatActivity() {
 
         mContext = this
 
-        initView()
+        FirebaseApp.initializeApp(this)
+
+        initListView()
 
         readDataFromFirestone()
     }
 
-    private fun initView(){
+    private fun initListView(){
         studentAdapter = StudentAdapter(mContext, studentInfo.studentList)
         recycler_student.adapter = studentAdapter
         recycler_student.layoutManager = LinearLayoutManager(mContext, LinearLayout.VERTICAL, false)
@@ -69,20 +71,24 @@ class MainActivity : AppCompatActivity() {
             mAddStudentPopup.showAsDropDown(popupAddStudent, Gravity.CENTER, 0)
         }
 
+        mAddStudentPopup.isFocusable = true
+        mAddStudentPopup.update()
         popupAddStudent.btn_done.setOnClickListener {
-            studentInfo.studentList.add(StudentItem(popupAddStudent.txt_name.text.toString(),
-                    popupAddStudent.txt_age.text.toString().toInt(), popupAddStudent.txt_address.text.toString(),
-                    popupAddStudent.txt_mobile.text.toString() ))
+            studentInfo.studentList.add(StudentItem(popupAddStudent.txt_name_edit.text.toString(),
+                    popupAddStudent.txt_age_edit.text.toString().toInt(), popupAddStudent.txt_address_edit.text.toString(),
+                    popupAddStudent.txt_mobile_edit.text.toString() ))
             writeDataOnFirestone()
         }
     }
 
     private fun writeDataOnFirestone(){
-        mFirestore.collection("student_info").document("student_info")
+        mFirestore.collection("student_info").document("student_list")
                 .set(studentInfo)
                 .addOnSuccessListener {
                     Toast.makeText(mContext, "DocumentSnapshot successfully written!", Toast.LENGTH_LONG).show()
                     Log.d(TAG, "DocumentSnapshot successfully written!")
+
+                    initListView()
                 }.addOnFailureListener {
                     e -> Log.e(TAG, "Error writing document", e)
                 }
@@ -90,21 +96,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun readDataFromFirestone(){
         mFirestore = FirebaseFirestore.getInstance()
-        mFirestore.firestoreSettings = FirebaseFirestoreSettings.Builder()
-                .setTimestampsInSnapshotsEnabled(true)
-                .build()
+        mFirestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
 
         mFirestore
                 .collection("student_info").document("student_list")
                 .get()
                 .addOnSuccessListener { document ->
-                    if (document != null) {
-                        studentInfo = document.toObject(StudentInfo::class.java) ?: StudentInfo()
-                        studentAdapter.notifyDataSetChanged()
-                        Toast.makeText(mContext, "DocumentSnapshot read successfully!", Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(mContext, "No such document!", Toast.LENGTH_LONG).show()
-                        Log.e(TAG, "No such document")
+                    try {
+                        if (document != null) {
+                            studentInfo = document.toObject(StudentInfo::class.java) ?: StudentInfo()
+
+                            initListView()
+                            Toast.makeText(mContext, "DocumentSnapshot read successfully!", Toast.LENGTH_LONG).show()
+                        } else {
+                            Toast.makeText(mContext, "No such document!", Toast.LENGTH_LONG).show()
+                            Log.e(TAG, "No such document")
+                        }
+                    }catch (ex: Exception){
+                        Log.e(TAG, ex.message)
                     }
                 }.addOnFailureListener {
                     e -> Log.e(TAG, "Error writing document", e)

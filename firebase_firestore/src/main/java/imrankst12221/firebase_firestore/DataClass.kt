@@ -1,12 +1,12 @@
 package imrankst12221.firebase_firestore
 
 data class StudentInfo(
-        val studentList: ArrayList<StudentItem> = arrayListOf()
+        var studentList: ArrayList<StudentItem> = arrayListOf()
 )
 
 data class StudentItem(
-        val name: String = "",
-        val age: Int = 0,
-        val address: String,
-        val mobile_no: String
+        var name: String = "",
+        var age: Int = 0,
+        var address: String = "",
+        var mobile_no: String = ""
 )
