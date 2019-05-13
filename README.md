@@ -1,22 +1,32 @@
-# Kotlin-REST-API-Manage
-Manage REST API with okhttp3, retrofit2, gson and rxjava2
-
-Android has multiple ways to manage Manage REST API. Using some awesome libraries are making it more efficient and awesome. Read the full article and full app source code available on Github.
+# Kotlin Guide
+Kotlin guide is a sample project source code which helps an Android developer to use advanced technology with Kotlin. Under Kotlin guide you found multiple projects in different branch and master branch are contain all the project module. 
 
 # The topics we will learn are:
- * Okhttp3
- * Retrofit2
- * RxJava
- * RxAndroid
- * Gson
+* Kotlin-REST-API-Manage
+* Cloud Firestore with kotlin
 
-## Find full tutorial on medium :
+## Kotlin-REST-API-Manage
+(Manage REST API with okhttp3, retrofit2, gson and rxjava2)
+
+Android has multiple ways to manage Manage REST API. Using some awesome libraries are making it more efficient and awesome. Read the full article on medium:
 <br>
-<a href="https://medium.com/@imrankst1221/manage-rest-api-with-okhttp3-retrofit2-gson-and-rxjava2-aa5bea1e8a92">https://medium.com/@imrankst1221/</a>
+<a href="https://medium.com/@imrankst1221/manage-rest-api-with-okhttp3-retrofit2-gson-and-rxjava2-aa5bea1e8a92">@imrankst1221/manage-rest-api-with-okhttp3-retrofit2-gson-and-rxjava2</a>
 <br>
 <a href="https://medium.com/@imrankst1221/manage-rest-api-with-okhttp3-retrofit2-gson-and-rxjava2-aa5bea1e8a92" rel="nofollow" rel="nofollow">
-  <img alt="InfixSoft" src="https://user-images.githubusercontent.com/7795398/50554968-22148d00-0cef-11e9-912c-cfd54544353f.png" width="390" height="160" >
+  <img alt="InfixSoft" src="https://user-images.githubusercontent.com/7795398/50554968-22148d00-0cef-11e9-912c-cfd54544353f.png" width="390" height="150" >
 </a>
+
+## Cloud Firestore with kotlin:
+(Implement Cloud Firestore with data class)
+
+Google's Cloud Firestore is NoSQL database which is a flexible, scalable database for mobile, web, and server development. Read the full article on medium:
+<br>
+<a href="https://medium.com/@imrankst1221/cloud-firestore-kotlin-33892886ce64">@imrankst1221/cloud-firestore-kotlin</a>
+<br>
+<a href="https://medium.com/@imrankst1221/cloud-firestore-kotlin-33892886ce64" rel="nofollow" rel="nofollow">
+  <img alt="InfixSoft" src="https://user-images.githubusercontent.com/7795398/57610855-682e0700-7593-11e9-8a00-d27f442971df.png" width="390" height="150" >
+</a>
+
 
 
 ## Contact with me
