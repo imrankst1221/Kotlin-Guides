@@ -16,6 +16,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.popup_add_student.view.*
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
