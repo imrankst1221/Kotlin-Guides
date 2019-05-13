@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -38,19 +39,107 @@ class MainActivity : AppCompatActivity() {
 
         initListView()
 
-        readDataFromFirestone()
+        readDataFromFirestore()
+
+        // write single row
+        //writeDataOnFirestore(StudentItem("John dao", 18, "California", "098741015"))
+
+        // read data with condition
+        //readDataFromFirestore(18)
     }
 
     private fun initListView(){
         studentAdapter = StudentAdapter(mContext, studentInfo.studentList)
         recycler_student.adapter = studentAdapter
-        recycler_student.layoutManager = LinearLayoutManager(mContext, LinearLayout.VERTICAL, false)
+        recycler_student.layoutManager = LinearLayoutManager(mContext, LinearLayout.VERTICAL, false) as RecyclerView.LayoutManager?
 
         fav_add.setOnClickListener {
             showAddStudentPopup()
         }
     }
 
+    // write whole data class
+    private fun writeDataOnFirestore(){
+        mFirestore.collection("student_info").document("student_list")
+                .set(studentInfo)
+                .addOnSuccessListener {
+                    Toast.makeText(mContext, "DocumentSnapshot successfully written!", Toast.LENGTH_LONG).show()
+                    Log.d(TAG, "DocumentSnapshot successfully written!")
+
+                    initListView()
+                }.addOnFailureListener {
+                    e -> Log.e(TAG, "Error writing document", e)
+                }
+    }
+
+    // write single row
+    private fun writeDataOnFirestore(studentItem: StudentItem){
+        val student = HashMap<String, Any>()
+        student["name"] = studentItem.name
+        student["age"] = studentItem.name
+        student["address"] = studentItem.address
+        student["mobile_no"] = studentItem.mobile_no
+        mFirestore.collection("student_info").document("student_list")
+                .set(student)
+                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+                .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+    }
+
+    // read whole data class
+    private fun readDataFromFirestore(){
+        mFirestore = FirebaseFirestore.getInstance()
+        mFirestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
+
+        mFirestore
+                .collection("student_info").document("student_list")
+                .get()
+                .addOnSuccessListener { document ->
+                    try {
+                        if (document != null) {
+                            studentInfo = document.toObject(StudentInfo::class.java) ?: StudentInfo()
+
+                            initListView()
+                            Toast.makeText(mContext, "DocumentSnapshot read successfully!", Toast.LENGTH_LONG).show()
+                        } else {
+                            Toast.makeText(mContext, "No such document!", Toast.LENGTH_LONG).show()
+                        }
+                    }catch (ex: Exception){
+                        Log.e(TAG, ex.message)
+                    }
+                }.addOnFailureListener {
+                    e -> Log.e(TAG, "Error writing document", e)
+                }
+    }
+
+    // read data with condition
+    private fun readDataFromFirestore(ageCondition: Int){
+        mFirestore = FirebaseFirestore.getInstance()
+        mFirestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
+
+        mFirestore
+                .collection("student_info")
+                .whereLessThan("age", ageCondition)
+                .get()
+                .addOnSuccessListener { documents ->
+                    try {
+                        if (documents != null) {
+                            for (document in documents) {
+                                Log.d(TAG, "${document.id} => ${document.data}")
+                            }
+                            Toast.makeText(mContext, "DocumentSnapshot read successfully!", Toast.LENGTH_LONG).show()
+                        } else {
+                            Toast.makeText(mContext, "No such document!", Toast.LENGTH_LONG).show()
+                        }
+                    }catch (ex: Exception){
+                        Log.e(TAG, ex.message)
+                    }
+                }.addOnFailureListener {
+                    e -> Log.e(TAG, "Error writing document", e)
+                }
+    }
+
+
+    // student data insert from UI
     private fun showAddStudentPopup(){
         val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val popupAddStudent = inflater.inflate(R.layout.popup_add_student, null)
@@ -78,46 +167,7 @@ class MainActivity : AppCompatActivity() {
             studentInfo.studentList.add(StudentItem(popupAddStudent.txt_name_edit.text.toString(),
                     popupAddStudent.txt_age_edit.text.toString().toInt(), popupAddStudent.txt_address_edit.text.toString(),
                     popupAddStudent.txt_mobile_edit.text.toString() ))
-            writeDataOnFirestone()
+            writeDataOnFirestore()
         }
-    }
-
-    private fun writeDataOnFirestone(){
-        mFirestore.collection("student_info").document("student_list")
-                .set(studentInfo)
-                .addOnSuccessListener {
-                    Toast.makeText(mContext, "DocumentSnapshot successfully written!", Toast.LENGTH_LONG).show()
-                    Log.d(TAG, "DocumentSnapshot successfully written!")
-
-                    initListView()
-                }.addOnFailureListener {
-                    e -> Log.e(TAG, "Error writing document", e)
-                }
-    }
-
-    private fun readDataFromFirestone(){
-        mFirestore = FirebaseFirestore.getInstance()
-        mFirestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
-
-        mFirestore
-                .collection("student_info").document("student_list")
-                .get()
-                .addOnSuccessListener { document ->
-                    try {
-                        if (document != null) {
-                            studentInfo = document.toObject(StudentInfo::class.java) ?: StudentInfo()
-
-                            initListView()
-                            Toast.makeText(mContext, "DocumentSnapshot read successfully!", Toast.LENGTH_LONG).show()
-                        } else {
-                            Toast.makeText(mContext, "No such document!", Toast.LENGTH_LONG).show()
-                            Log.e(TAG, "No such document")
-                        }
-                    }catch (ex: Exception){
-                        Log.e(TAG, ex.message)
-                    }
-                }.addOnFailureListener {
-                    e -> Log.e(TAG, "Error writing document", e)
-                }
     }
 }
