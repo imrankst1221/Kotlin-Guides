@@ -1,10 +1,13 @@
-package com.imrankst1221.kotlin.api
+package com.imrankst1221.kotlin.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.imrankst1221.kotlin.api.ApiService
+import com.imrankst1221.kotlin.Constants
+import com.imrankst1221.kotlin.api.R
+import com.imrankst1221.kotlin.UtilMethods
 import com.imrankst1221.kotlin.api.request.LoginPostData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -22,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         loginApiCall("user-001", "pas1221")
 
         // user get request
-
+        userApiCall("user-001")
     }
 
 
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     // user info get request
     @SuppressLint("CheckResult")
-    private fun userApiCall(userID: Int){
+    private fun userApiCall(userID: String){
         if(UtilMethods.isConnectedToInternet(mContext)){
             UtilMethods.showLoading(mContext)
             val observable = ApiService.userApiCall().getUser(Constants.API_AUTHORIZATION_KEY, userID)

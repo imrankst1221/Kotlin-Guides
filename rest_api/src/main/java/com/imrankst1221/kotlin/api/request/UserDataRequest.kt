@@ -9,7 +9,7 @@ interface UserApiService {
     @GET("user")
     fun getUser(
             @Query("Authorization") authorizationKey: String, // authentication header
-            @Query("UserID") userID: Int // authentication header
+            @Query("UserID") userID: String // authentication header
     ): Observable<UserResponse>
 }
 
