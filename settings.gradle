@@ -1,1 +1,1 @@
-include ':rest_api', ':firebase_firestore'
+include ':rest_api_mvvm'
