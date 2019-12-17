@@ -15,6 +15,8 @@ import io.reactivex.schedulers.Schedulers
 class MainActivity : AppCompatActivity() {
     lateinit var mContext: Context
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

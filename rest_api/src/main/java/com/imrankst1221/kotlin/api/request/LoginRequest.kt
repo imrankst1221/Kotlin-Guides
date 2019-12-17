@@ -17,4 +17,3 @@ data class LoginPostData(
         @SerializedName("UserId") var userID: String,
         @SerializedName("Password") var userPassword: String
 )
-
